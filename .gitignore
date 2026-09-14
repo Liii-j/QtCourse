@@ -1,0 +1,41 @@
+# ---- Qt 构建产物 ----
+build/
+build-*/
+debug/
+release/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+Makefile
+Makefile.*
+*.Debug
+*.Release
+
+# ---- Qt 自动生成文件（由 .ui / .qrc 生成）----
+ui_*.h
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+qrc_*.h
+
+# ---- Qt Creator 用户配置 ----
+.qtcreator/
+*.pro.user
+*.pro.user.*
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# ---- 构建时拷贝到构建目录的资源副本 ----
+build/*/images/
