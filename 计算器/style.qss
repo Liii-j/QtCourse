@@ -1,0 +1,95 @@
+/* =====================================================================
+ * style.qss —— 计算器界面样式表
+ *
+ * 设计说明：
+ *   1. 按功能把按钮分成 4 类，分类信息由 UI 设计器中的动态属性 role 提供
+ *      （func 功能键 / operator 运算符 / number 数字键 / equals 等号），
+ *      样式表用属性选择器 [role="..."] 统一施加样式，避免逐个按钮写选择器。
+ *   2. 层次感：计算器底色取浅灰 #d9dde2，按键一律比底色亮，才能"浮"起来 ——
+ *      数字键最亮（纯白）、功能键次之（#f0f2f5）、等号用主题蓝突出。
+ *      底与键的明度差拉开了，界面才不会整体发白、按键边界糊在一起。
+ *   3. 按钮文字统一用纯黑 #000000，保证在亮色按键上有足够的对比度；
+ *      只有等号是蓝底，文字保留白色。
+ *   4. 统一 6px 圆角、去掉边框和焦点虚线框，鼠标悬停/按下都有反馈。
+ *   5. 结果行在错误状态下通过属性选择器 [state="error"] 变红。
+ * ===================================================================== */
+
+/* ---------------------- 窗口与显示区 ---------------------- */
+
+/* 计算器底色：刻意比按键暗一档，按键靠明度差"凸"出来 */
+QMainWindow,
+QWidget#centralWidget {
+    background-color: #d9dde2;
+}
+
+QLabel#labelExpression {
+    color: #5f6368;
+    padding-right: 6px;
+}
+
+QLabel#labelResult {
+    color: #000000;
+    padding-right: 6px;
+}
+
+/* 除数为 0 等错误状态：结果行转红，配合代码里缩小的字号做提示 */
+QLabel#labelResult[state="error"] {
+    color: #c0392b;
+}
+
+/* ---------------------- 按钮公共样式 ---------------------- */
+
+QPushButton {
+    border: none;
+    border-radius: 6px;
+    padding: 2px;
+    outline: none;          /* 去掉键盘焦点虚线框 */
+}
+
+/* ---------------------- 数字键 / 运算符键：最亮的一层 ---------------------- */
+
+QPushButton[role="number"],
+QPushButton[role="operator"] {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+QPushButton[role="number"]:hover,
+QPushButton[role="operator"]:hover {
+    background-color: #eef0f3;
+}
+
+QPushButton[role="number"]:pressed,
+QPushButton[role="operator"]:pressed {
+    background-color: #e2e6ea;
+}
+
+/* ---------------------- 功能键（CE / C / ⌫ / 1/x 等）：略暗于数字键 ---------------------- */
+
+QPushButton[role="func"] {
+    background-color: #f0f2f5;
+    color: #000000;
+}
+
+QPushButton[role="func"]:hover {
+    background-color: #e6e9ed;
+}
+
+QPushButton[role="func"]:pressed {
+    background-color: #dde1e6;
+}
+
+/* ---------------------- 等号：主题蓝 ---------------------- */
+
+QPushButton[role="equals"] {
+    background-color: #3b7ddd;
+    color: #ffffff;
+}
+
+QPushButton[role="equals"]:hover {
+    background-color: #336fc7;
+}
+
+QPushButton[role="equals"]:pressed {
+    background-color: #2b5ea8;
+}
